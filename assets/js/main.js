@@ -4,7 +4,7 @@
   // ═══════════════════════════════════════════════════
   // State
   // ═══════════════════════════════════════════════════
-  var activeSection = null; // null = home (all), "research", "writing", "notes", "sketchbook", "about"
+  var activeSection = null;
   var activeItem = { kind: "named", id: getDefaultId() };
   var isTransitioning = false;
 
@@ -20,12 +20,11 @@
   // ═══════════════════════════════════════════════════
   function checkNightSky() {
     var hour = new Date().getHours();
-    var isNight = hour >= 18 || hour < 6;
-    document.body.classList.toggle("night-sky", isNight);
+    document.body.classList.toggle("night-sky", hour >= 18 || hour < 6);
   }
 
   // ═══════════════════════════════════════════════════
-  // Locked page messages
+  // Locked page messages + ghost blocks
   // ═══════════════════════════════════════════════════
   var TIMELINE_MESSAGES = [
     "not hiding it \u2014 just holding it a little longer",
@@ -39,94 +38,12 @@
   ];
 
   var GHOST_BLOCKS = [
-    [
-      "The morning came in sideways through the kitchen window",
-      "and landed on the counter where yesterday\u2019s coffee",
-      "had left a ring like a small brown planet.",
-      "",
-      "She picked up the cup and held it the way",
-      "her mother used to hold letters from home \u2014",
-      "with both hands, as if the thing might",
-      "fly away if she wasn\u2019t careful.",
-      "",
-      "Outside, the autowala was arguing",
-      "with someone about a fare that seemed",
-      "unreasonable to both of them for",
-      "entirely different reasons."
-    ],
-    [
-      "I keep a list of things I\u2019ve lost to cities \u2014",
-      "a grey scarf in a cab on Market Street,",
-      "the ability to sleep without a fan,",
-      "the phone number of the man",
-      "who fixed our washing machine in Seattle.",
-      "",
-      "San Francisco took the most from me",
-      "or maybe I left the most there.",
-      "It\u2019s hard to tell the difference",
-      "when you\u2019re the one who moved."
-    ],
-    [
-      "A asked me yesterday what I\u2019m studying",
-      "and I said I\u2019m trying to understand",
-      "how machines learn to think.",
-      "",
-      "He said do they have brains",
-      "and I said sort of,",
-      "and he said are their brains",
-      "squishy like mine",
-      "and I said no, theirs are made of math.",
-      "",
-      "He thought about this for a while",
-      "and then said that sounds boring",
-      "and went back to his Legos.",
-      "",
-      "It was the most honest peer review",
-      "I have received in months."
-    ],
-    [
-      "The campus at night is a different country.",
-      "The same buildings that feel institutional",
-      "by day become something softer",
-      "when the light is gone and",
-      "the only sound is someone\u2019s",
-      "code compiling three floors up.",
-      "",
-      "I found the library stays open",
-      "until midnight on Thursdays.",
-      "There\u2019s a corner on the second floor",
-      "where the AC doesn\u2019t reach",
-      "and the window looks out",
-      "onto a neem tree that",
-      "nobody else seems to notice."
-    ],
-    [
-      "The gradient doesn\u2019t care",
-      "about your intentions.",
-      "It flows where the loss surface",
-      "tells it to flow,",
-      "which is both the beauty",
-      "and the frustration of the thing.",
-      "",
-      "I spent three weeks convinced",
-      "the bug was in my reward model",
-      "before realizing it was in",
-      "how I was batching the data."
-    ],
-    [
-      "Dravid batted the way some people pray \u2014",
-      "with the whole body, quietly,",
-      "as if the act itself was the point",
-      "and the scoreboard was someone else\u2019s",
-      "problem entirely.",
-      "",
-      "I tried to explain this to someone once",
-      "and they said you mean he was boring",
-      "and I said no I mean he was",
-      "the only honest one out there",
-      "and they said same thing",
-      "and I said it really isn\u2019t."
-    ]
+    ["The morning came in sideways through the kitchen window","and landed on the counter where yesterday\u2019s coffee","had left a ring like a small brown planet.","","She picked up the cup and held it the way","her mother used to hold letters from home \u2014","with both hands, as if the thing might","fly away if she wasn\u2019t careful.","","Outside, the autowala was arguing","with someone about a fare that seemed","unreasonable to both of them for","entirely different reasons."],
+    ["I keep a list of things I\u2019ve lost to cities \u2014","a grey scarf in a cab on Market Street,","the ability to sleep without a fan,","the phone number of the man","who fixed our washing machine in Seattle.","","San Francisco took the most from me","or maybe I left the most there.","It\u2019s hard to tell the difference","when you\u2019re the one who moved."],
+    ["A asked me yesterday what I\u2019m studying","and I said I\u2019m trying to understand","how machines learn to think.","","He said do they have brains","and I said sort of,","and he said are their brains","squishy like mine","and I said no, theirs are made of math.","","He thought about this for a while","and then said that sounds boring","and went back to his Legos.","","It was the most honest peer review","I have received in months."],
+    ["The campus at night is a different country.","The same buildings that feel institutional","by day become something softer","when the light is gone and","the only sound is someone\u2019s","code compiling three floors up.","","I found the library stays open","until midnight on Thursdays.","There\u2019s a corner on the second floor","where the AC doesn\u2019t reach","and the window looks out","onto a neem tree that","nobody else seems to notice."],
+    ["The gradient doesn\u2019t care","about your intentions.","It flows where the loss surface","tells it to flow,","which is both the beauty","and the frustration of the thing.","","I spent three weeks convinced","the bug was in my reward model","before realizing it was in","how I was batching the data."],
+    ["Dravid batted the way some people pray \u2014","with the whole body, quietly,","as if the act itself was the point","and the scoreboard was someone else\u2019s","problem entirely.","","I tried to explain this to someone once","and they said you mean he was boring","and I said no I mean he was","the only honest one out there","and they said same thing","and I said it really isn\u2019t."]
   ];
 
   // ═══════════════════════════════════════════════════
@@ -137,40 +54,27 @@
     for (var i = 0; i < s.length; i++) hash = (hash * 31 + s.charCodeAt(i)) | 0;
     return Math.abs(hash);
   }
-
-  function getTimelineMessage(month) {
-    return TIMELINE_MESSAGES[hashString(month) % TIMELINE_MESSAGES.length];
-  }
-
-  function getGhostBlock(seed) {
-    return GHOST_BLOCKS[hashString(seed, "ghost") % GHOST_BLOCKS.length];
-  }
-
-  function escapeHtml(text) {
-    var div = document.createElement("div");
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-  function getPieceById(id) {
-    for (var i = 0; i < NAMED_PIECES.length; i++) {
-      if (NAMED_PIECES[i].id === id) return NAMED_PIECES[i];
-    }
-    return null;
-  }
-
+  function getTimelineMessage(m) { return TIMELINE_MESSAGES[hashString(m) % TIMELINE_MESSAGES.length]; }
+  function getGhostBlock(s) { return GHOST_BLOCKS[hashString(s, "ghost") % GHOST_BLOCKS.length]; }
+  function escapeHtml(t) { var d = document.createElement("div"); d.textContent = t; return d.innerHTML; }
+  function getPieceById(id) { for (var i = 0; i < NAMED_PIECES.length; i++) { if (NAMED_PIECES[i].id === id) return NAMED_PIECES[i]; } return null; }
   function filterPieces(section) {
     if (!section) return NAMED_PIECES;
     return NAMED_PIECES.filter(function (p) { return p.section === section; });
   }
+  function renderGhostLines(lines) {
+    return lines.map(function (l) {
+      return l === "" ? '<div class="ghost-break"></div>' : '<div class="ghost-line">' + escapeHtml(l) + '</div>';
+    }).join("");
+  }
 
   // ═══════════════════════════════════════════════════
-  // Currently element
+  // Currently + Li'l one says
   // ═══════════════════════════════════════════════════
   function renderCurrently() {
-    var wrap = document.getElementById("currently-wrap");
-    if (!wrap) return;
-    wrap.innerHTML =
+    var w = document.getElementById("currently-wrap");
+    if (!w) return;
+    w.innerHTML =
       '<div class="currently">' +
       '<div class="currently-label">currently</div>' +
       '<div class="currently-item"><span class="currently-key">reading</span> ' + escapeHtml(CURRENTLY.reading) + '</div>' +
@@ -179,38 +83,15 @@
       '</div>';
   }
 
-  // ═══════════════════════════════════════════════════
-  // The li'l one says
-  // ═══════════════════════════════════════════════════
   function renderLittleone() {
-    var wrap = document.getElementById("littleone-wrap");
-    if (!wrap || !LITTLEONE.length) return;
+    var w = document.getElementById("littleone-wrap");
+    if (!w || !LITTLEONE.length) return;
     var idx = Math.floor(Math.random() * LITTLEONE.length);
-    wrap.innerHTML =
+    w.innerHTML =
       '<div class="littleone">' +
       '<div class="littleone-label">the li\u2019l one says</div>' +
       '<div class="littleone-quote">\u201C' + escapeHtml(LITTLEONE[idx]) + '\u201D</div>' +
       '</div>';
-  }
-
-  // ═══════════════════════════════════════════════════
-  // Ghost text
-  // ═══════════════════════════════════════════════════
-  function renderGhostLines(lines) {
-    return lines.map(function (line) {
-      return line === "" ? '<div class="ghost-break"></div>' : '<div class="ghost-line">' + escapeHtml(line) + '</div>';
-    }).join("");
-  }
-
-  // ═══════════════════════════════════════════════════
-  // Margin notes
-  // ═══════════════════════════════════════════════════
-  function renderMarginNotes(notes) {
-    if (!notes || !notes.length) return "";
-    return notes.map(function (n) {
-      return '<div class="content-margin-note" data-after-p="' + (n.position || 0) + '">' +
-        '<span>' + escapeHtml(n.text) + '</span></div>';
-    }).join("");
   }
 
   // ═══════════════════════════════════════════════════
@@ -228,12 +109,146 @@
   }
 
   // ═══════════════════════════════════════════════════
-  // Spine rendering
+  // Corkboard About page
+  // ═══════════════════════════════════════════════════
+  function renderAbout() {
+    var pinColors = ['#c4653a', '#8b6f47', '#a0522d', '#6b4226', '#7a5c3e'];
+
+    function makePin(color) {
+      return '<div class="pushpin" style="background:' + (color || pinColors[Math.floor(Math.random() * pinColors.length)]) + '"></div>';
+    }
+
+    function makeTape(angle) {
+      var a = angle || (Math.random() * 10 - 5);
+      return '<div class="tape-strip" style="transform:rotate(' + a + 'deg)"></div>';
+    }
+
+    var notesHtml = '';
+    ABOUT.fragments.forEach(function (f, i) {
+      var style = f.style || 'sticky-yellow';
+      var rot = f.rotation || 0;
+      var attachment = '';
+
+      if (style.indexOf('sticky') === 0) {
+        // Sticky notes have a folded corner, no pin
+        attachment = '';
+      } else if (style === 'torn-paper') {
+        attachment = makePin();
+      } else if (style === 'parchment') {
+        attachment = makeTape(rot * 0.5);
+      }
+
+      notesHtml += '<div class="cork-note ' + style + ' draggable" ' +
+        'style="transform:rotate(' + rot + 'deg)" ' +
+        'data-index="' + i + '">' +
+        attachment +
+        '<div class="cork-note-text">' + escapeHtml(f.text) + '</div>' +
+        '</div>';
+    });
+
+    var photoHtml = '<div class="cork-photo-frame">' +
+      makeTape(3) +
+      '<div class="cork-photo-placeholder">' +
+      '<span class="cork-photo-label">photo goes here</span>' +
+      '</div></div>';
+
+    var linksHtml = ABOUT.links.map(function (l) {
+      return '<a class="cork-link" href="' + l.url + '" target="_blank">' + l.label + '</a>';
+    }).join('<span class="cork-link-sep">\u00B7</span>');
+
+    return '<div class="corkboard">' +
+      '<div class="cork-bio">' + escapeHtml(ABOUT.bio) + '</div>' +
+      '<div class="cork-surface">' +
+      photoHtml +
+      notesHtml +
+      '</div>' +
+      '<div class="cork-links">' + linksHtml + '</div>' +
+      '</div>';
+  }
+
+  // ═══════════════════════════════════════════════════
+  // Draggable notes
+  // ═══════════════════════════════════════════════════
+  function initDraggable(container) {
+    var notes = container.querySelectorAll('.draggable');
+    notes.forEach(function (note) {
+      var startX, startY, origX, origY, isDragging = false;
+
+      note.addEventListener('mousedown', function (e) {
+        if (e.target.closest('a')) return;
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        var rect = note.getBoundingClientRect();
+        var parentRect = note.parentElement.getBoundingClientRect();
+        origX = rect.left - parentRect.left;
+        origY = rect.top - parentRect.top;
+        note.style.zIndex = 100;
+        note.style.transition = 'none';
+        note.classList.add('dragging');
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', function (e) {
+        if (!isDragging) return;
+        var dx = e.clientX - startX;
+        var dy = e.clientY - startY;
+        note.style.position = 'relative';
+        note.style.left = dx + 'px';
+        note.style.top = dy + 'px';
+      });
+
+      document.addEventListener('mouseup', function () {
+        if (!isDragging) return;
+        isDragging = false;
+        note.style.zIndex = '';
+        note.style.transition = '';
+        note.classList.remove('dragging');
+      });
+    });
+  }
+
+  // ═══════════════════════════════════════════════════
+  // Sketchbook — organic wall
+  // ═══════════════════════════════════════════════════
+  function renderSketchbook() {
+    var pinColors = ['#c4653a', '#8b6f47', '#7a5c3e'];
+    var entries = SKETCHBOOK.map(function (s, i) {
+      var rot = ((i * 7 + 3) % 11) - 5; // -5 to 5 degrees
+      var attachment = i % 3 === 0
+        ? '<div class="tape-strip sketch-tape" style="transform:rotate(' + (rot * -0.5) + 'deg)"></div>'
+        : '<div class="pushpin sketch-pin" style="background:' + pinColors[i % pinColors.length] + '"></div>';
+
+      if (s.visible && s.image) {
+        return '<div class="sketch-entry sketch-wall-item" style="transform:rotate(' + rot + 'deg)">' +
+          attachment +
+          '<img class="sketch-image" src="' + s.image + '" alt="' + escapeHtml(s.title) + '">' +
+          (s.caption ? '<div class="sketch-caption">' + escapeHtml(s.caption) + '</div>' : '') +
+          '</div>';
+      } else {
+        return '<div class="sketch-entry sketch-wall-item sketch-locked" style="transform:rotate(' + rot + 'deg)">' +
+          attachment +
+          '<div class="sketch-placeholder"></div>' +
+          '<div class="sketch-title-locked">' + escapeHtml(s.title) + '</div>' +
+          (s.type ? '<div class="sketch-type">' + escapeHtml(s.type) + '</div>' : '') +
+          '</div>';
+      }
+    }).join("");
+
+    return '<div class="sketchbook-page">' +
+      '<h2 class="sketchbook-title">Sketchbook</h2>' +
+      '<div class="sketchbook-subtitle">oil, charcoal, digital, photographs</div>' +
+      '<div class="sketchbook-wall">' + entries + '</div>' +
+      '<div class="sketch-add-note">drop images into assets/images/ and update _data/sketchbook.yml</div>' +
+      '</div>';
+  }
+
+  // ═══════════════════════════════════════════════════
+  // Spine
   // ═══════════════════════════════════════════════════
   function renderSpine() {
     var container = document.getElementById("spine-entries");
     if (!container) return;
-
     var pieces = filterPieces(activeSection);
     var html = '<div class="named-pieces">';
 
@@ -248,88 +263,28 @@
         '<div><div class="' + titleClass + '">' + entry.title + '</div>' +
         '<span class="' + typeClass + '">' + entry.type + '</span></div></div>';
     });
-
     html += '</div>';
 
-    // Timeline only on home view
     if (!activeSection) {
       html += '<div class="spine-separator"><div class="spine-separator-dot"></div><div class="spine-separator-line"></div></div>';
       html += '<div class="timeline-entries">';
-
       TIMELINE.forEach(function (entry) {
         var isActive = activeItem.kind === "timeline" && activeItem.id === entry.month;
-        var dotClass = "timeline-dot" + (isActive ? " active" : "");
-        var monthClass = "timeline-month" + (isActive ? " active" : "");
-        var tagsClass = "timeline-tags" + (isActive ? " active" : "");
-
         html += '<div class="timeline-entry" data-kind="timeline" data-id="' + entry.month + '">' +
-          '<div class="timeline-dot-wrap"><div class="' + dotClass + '"></div></div>' +
-          '<div><span class="' + monthClass + '">' + entry.month + '</span>' +
-          '<span class="' + tagsClass + '">' + entry.tags.join(", ") + '</span></div></div>';
+          '<div class="timeline-dot-wrap"><div class="timeline-dot' + (isActive ? " active" : "") + '"></div></div>' +
+          '<div><span class="timeline-month' + (isActive ? " active" : "") + '">' + entry.month + '</span>' +
+          '<span class="timeline-tags' + (isActive ? " active" : "") + '">' + entry.tags.join(", ") + '</span></div></div>';
       });
-
       html += '</div>';
     }
 
     container.innerHTML = html;
-
-    // Click handlers
     container.querySelectorAll("[data-kind]").forEach(function (el) {
-      el.addEventListener("click", function () {
-        handleNavigation(this.dataset.kind, this.dataset.id);
-      });
+      el.addEventListener("click", function () { handleNavigation(this.dataset.kind, this.dataset.id); });
     });
-
-    // Update nav active states
-    document.querySelectorAll(".nav-link").forEach(function (link) {
-      link.classList.toggle("active", link.dataset.section === activeSection);
+    document.querySelectorAll(".nav-link").forEach(function (l) {
+      l.classList.toggle("active", l.dataset.section === activeSection);
     });
-  }
-
-  // ═══════════════════════════════════════════════════
-  // About page
-  // ═══════════════════════════════════════════════════
-  function renderAbout() {
-    var fragments = ABOUT.fragments.map(function (f) {
-      return '<div class="about-fragment">' + escapeHtml(f) + '</div>';
-    }).join("");
-
-    var links = ABOUT.links.map(function (l) {
-      return '<a class="about-link" href="' + l.url + '" target="_blank">' + l.label + '</a>';
-    }).join('<span class="about-link-sep">\u00B7</span>');
-
-    return '<div class="about-page">' +
-      '<div class="about-photo-area" id="about-photo"></div>' +
-      '<div class="about-bio">' + escapeHtml(ABOUT.bio) + '</div>' +
-      '<div class="about-fragments">' + fragments + '</div>' +
-      '<div class="about-links">' + links + '</div>' +
-      '</div>';
-  }
-
-  // ═══════════════════════════════════════════════════
-  // Sketchbook page
-  // ═══════════════════════════════════════════════════
-  function renderSketchbook() {
-    var entries = SKETCHBOOK.map(function (s) {
-      if (s.visible && s.image) {
-        return '<div class="sketch-entry">' +
-          '<img class="sketch-image" src="' + s.image + '" alt="' + escapeHtml(s.title) + '">' +
-          (s.caption ? '<div class="sketch-caption">' + escapeHtml(s.caption) + '</div>' : '') +
-          '</div>';
-      } else {
-        return '<div class="sketch-entry sketch-locked">' +
-          '<div class="sketch-placeholder"></div>' +
-          '<div class="sketch-title-locked">' + escapeHtml(s.title) + '</div>' +
-          (s.type ? '<div class="sketch-type">' + escapeHtml(s.type) + '</div>' : '') +
-          '</div>';
-      }
-    }).join("");
-
-    return '<div class="sketchbook-page">' +
-      '<h2 class="sketchbook-title">Sketchbook</h2>' +
-      '<div class="sketchbook-subtitle">oil, charcoal, digital, photographs</div>' +
-      '<div class="sketchbook-grid">' + entries + '</div>' +
-      '</div>';
   }
 
   // ═══════════════════════════════════════════════════
@@ -338,7 +293,6 @@
   function renderPage() {
     var container = document.getElementById("notebook-inner");
     if (!container) return;
-
     var html = "";
 
     if (activeSection === "about") {
@@ -354,54 +308,42 @@
         html = '<span class="page-type">' + entry.type + '</span>' +
           '<h2 class="page-title">' + entry.title + '</h2>' +
           '<div class="page-divider"></div>' +
-          '<div class="' + bodyClass + '">' + entry.contentHtml + '</div>';
-
-        // Margin notes
-        if (entry.marginNotes && entry.marginNotes.length) {
-          html += renderMarginNotes(entry.marginNotes);
-        }
-
-        // Crosslinks
-        html += renderCrosslinks(entry.crosslinks);
+          '<div class="' + bodyClass + '">' + entry.contentHtml + '</div>' +
+          renderCrosslinks(entry.crosslinks);
       } else {
-        var ghostLines = getGhostBlock(entry.id);
-        var ghostHtml = renderGhostLines(ghostLines);
+        var ghost = renderGhostLines(getGhostBlock(entry.id));
         html = '<span class="locked-type">' + entry.type + '</span>' +
           '<h2 class="locked-title">' + entry.title + '</h2>' +
           '<div class="locked-divider"></div>' +
-          '<div class="ghost-area"><div class="ghost-text">' + ghostHtml + '</div>' +
+          '<div class="ghost-area"><div class="ghost-text">' + ghost + '</div>' +
           '<div class="margin-note-wrap"><div class="margin-note">' +
           '<span>' + (entry.lockedNote || '') + '</span></div></div></div>';
       }
     } else if (activeItem.kind === "timeline") {
       var tEntry = null;
-      for (var j = 0; j < TIMELINE.length; j++) {
-        if (TIMELINE[j].month === activeItem.id) { tEntry = TIMELINE[j]; break; }
-      }
+      for (var j = 0; j < TIMELINE.length; j++) { if (TIMELINE[j].month === activeItem.id) { tEntry = TIMELINE[j]; break; } }
       if (!tEntry) return;
-
-      var message = getTimelineMessage(tEntry.month);
-      var tGhostLines = getGhostBlock(tEntry.month);
-      var tGhostHtml = renderGhostLines(tGhostLines);
-      var tagsHtml = tEntry.tags.map(function (tag, i) {
-        return '<span>' + tag + '</span>' + (i < tEntry.tags.length - 1 ? '<span class="tag-separator">\u00B7</span>' : '');
+      var msg = getTimelineMessage(tEntry.month);
+      var tGhost = renderGhostLines(getGhostBlock(tEntry.month));
+      var tagsHtml = tEntry.tags.map(function (t, i) {
+        return '<span>' + t + '</span>' + (i < tEntry.tags.length - 1 ? '<span class="tag-separator">\u00B7</span>' : '');
       }).join("");
-
       html = '<span class="timeline-page-month">' + tEntry.month + '</span>' +
         '<div class="timeline-page-tags">' + tagsHtml + '</div>' +
         '<div class="timeline-page-divider"></div>' +
-        '<div class="ghost-area"><div class="ghost-text">' + tGhostHtml + '</div>' +
-        '<div class="margin-note-wrap"><div class="margin-note timeline">' +
-        '<span>' + message + '</span></div></div></div>';
+        '<div class="ghost-area"><div class="ghost-text">' + tGhost + '</div>' +
+        '<div class="margin-note-wrap"><div class="margin-note timeline"><span>' + msg + '</span></div></div></div>';
     }
 
     container.innerHTML = html;
 
-    // Attach crosslink click handlers
+    // Init draggable on corkboard
+    if (activeSection === "about") {
+      initDraggable(container);
+    }
+
     container.querySelectorAll(".crosslink-item").forEach(function (el) {
-      el.addEventListener("click", function () {
-        handleNavigation("named", this.dataset.id);
-      });
+      el.addEventListener("click", function () { handleNavigation("named", this.dataset.id); });
     });
   }
 
@@ -411,68 +353,52 @@
   function handleNavigation(kind, id) {
     if (activeItem.kind === kind && activeItem.id === id && activeSection === null) return;
     if (isTransitioning) return;
-
     isTransitioning = true;
-    var content = document.getElementById("notebook-inner");
-    if (content) content.classList.add("transitioning");
-
+    var c = document.getElementById("notebook-inner");
+    if (c) c.classList.add("transitioning");
     setTimeout(function () {
       activeItem = { kind: kind, id: id };
       renderPage();
       renderSpine();
-      if (content) {
-        content.scrollTop = 0;
-        content.classList.remove("transitioning");
-      }
+      if (c) { c.scrollTop = 0; c.classList.remove("transitioning"); }
       isTransitioning = false;
     }, 230);
   }
 
   function handleSectionNav(section) {
     if (isTransitioning) return;
-
     isTransitioning = true;
-    var content = document.getElementById("notebook-inner");
-    if (content) content.classList.add("transitioning");
-
+    var c = document.getElementById("notebook-inner");
+    if (c) c.classList.add("transitioning");
     setTimeout(function () {
       activeSection = section;
-
       if (section === "about" || section === "sketchbook") {
         activeItem = { kind: "special", id: section };
       } else {
-        // Select first piece in section
         var pieces = filterPieces(section);
         if (pieces.length) {
-          // Prefer first visible piece
-          var firstVisible = pieces.find(function(p) { return p.visible; });
-          activeItem = { kind: "named", id: (firstVisible || pieces[0]).id };
+          var first = pieces.find(function(p) { return p.visible; });
+          activeItem = { kind: "named", id: (first || pieces[0]).id };
         }
       }
-
       renderPage();
       renderSpine();
-      if (content) {
-        content.scrollTop = 0;
-        content.classList.remove("transitioning");
-      }
+      if (c) { c.scrollTop = 0; c.classList.remove("transitioning"); }
       isTransitioning = false;
     }, 230);
   }
 
   // ═══════════════════════════════════════════════════
-  // Initialize
+  // Init
   // ═══════════════════════════════════════════════════
   function init() {
     checkNightSky();
-    setInterval(checkNightSky, 60000); // check every minute
-
+    setInterval(checkNightSky, 60000);
     renderCurrently();
     renderLittleone();
     renderSpine();
     renderPage();
 
-    // Nav link handlers
     document.querySelectorAll(".nav-link").forEach(function (link) {
       link.addEventListener("click", function (e) {
         e.preventDefault();
@@ -480,7 +406,6 @@
       });
     });
 
-    // Site name = home
     var siteName = document.getElementById("site-name-link");
     if (siteName) {
       siteName.addEventListener("click", function () {
@@ -491,7 +416,6 @@
       });
     }
 
-    // Animate in
     requestAnimationFrame(function () {
       setTimeout(function () {
         var spine = document.querySelector(".spine");
@@ -502,9 +426,6 @@
     });
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();

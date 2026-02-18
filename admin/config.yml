@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: auth/authorize
+  site_domain: dancing-rugelach-716fba.netlify.app
 
 media_folder: "assets/images"
 public_folder: "/assets/images"

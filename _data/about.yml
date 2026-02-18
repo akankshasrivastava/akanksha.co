@@ -1,17 +1,57 @@
 fragments:
-  - "I make dal baati choorma from memory and oil paintings from feeling."
-  - "I lived in San Francisco for ten years and never learned to drive. The fog was enough."
-  - "I am studying how machines learn to give credit where it is due. This is a sentence that works for both my research and my life."
-  - "My son A thinks my research sounds boring. He is six. He is not wrong and also not right."
-  - "I have been in love with Rahul Dravid since I was fourteen. This is not negotiable."
-  - "I read Amrita Pritam and Arundhati Roy. I read Cixin Liu at 1 AM. I read Shel Silverstein first, in class four, and wrote a poem a day for a year."
-  - "BITS Pilani. Seattle. San Francisco. Hyderabad. The list of places I have called home is also a list of people I have loved."
-  - "I paint when I cannot write and write when I cannot sleep."
-  - "I came back to India in 2022. I am sleeping in a room down the hall from my parents. The autowala outside is the same man from when I was twelve, or his ghost, or his son."
-  - "MS by Research, IIIT Hyderabad. Gradient credit assignment, process supervision, modular reasoning. I notice gaps the way a product manager does but I am learning to widen them instead of filling them."
-  - "I photograph night skies and complain about light pollution in cities."
-  - "Garak is the best character in all of Star Trek and I will not be taking questions."
-  - "The question is not what now. The question is who now."
+  - text: "I make dal baati choorma from memory and oil paintings from feeling."
+    style: sticky-yellow
+    rotation: -3
+    top: 5
+    left: 2
+
+  - text: "I lived in San Francisco for ten years and never learned to drive. The fog was enough."
+    style: torn-paper
+    rotation: 1.5
+    top: 5
+    left: 52
+
+  - text: "I am studying how machines learn to give credit where it is due. This is a sentence that works for both my research and my life."
+    style: sticky-pink
+    rotation: 2
+    top: 28
+    left: 8
+
+  - text: "My son A thinks my research sounds boring. He is six. He is not wrong and also not right."
+    style: parchment
+    rotation: -1
+    top: 28
+    left: 55
+
+  - text: "I have been in love with Rahul Dravid since I was fourteen. This is not negotiable."
+    style: sticky-blue
+    rotation: -2.5
+    top: 50
+    left: 3
+
+  - text: "BITS Pilani. Seattle. San Francisco. Hyderabad. The list of places I have called home is also a list of people I have loved."
+    style: torn-paper
+    rotation: 1
+    top: 50
+    left: 50
+
+  - text: "I paint when I cannot write and write when I cannot sleep."
+    style: sticky-yellow
+    rotation: 3
+    top: 72
+    left: 10
+
+  - text: "Garak is the best character in all of Star Trek and I will not be taking questions."
+    style: sticky-green
+    rotation: -1.5
+    top: 72
+    left: 55
+
+  - text: "The question is not what now. The question is who now."
+    style: parchment
+    rotation: 0.5
+    top: 90
+    left: 30
 
 bio_short: "Akanksha Srivastava. Researcher, writer, painter. IIIT Hyderabad. Previously in product, in San Francisco, in another life."
 
