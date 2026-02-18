@@ -2,8 +2,8 @@ backend:
   name: github
   repo: akankshasrivastava/akanksha.co
   branch: main
-  base_url: https://akanksha-cms-auth.netlify.app
-  auth_endpoint: /api/auth
+  auth_type: pkce
+  app_id: Ov23lipewKlpePS8dNnk
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
@@ -35,14 +35,3 @@ collections:
       - { label: "Visible", name: "visible", widget: "boolean", default: false }
       - { label: "Locked note (shown when hidden)", name: "locked_note", widget: "string", required: false, default: "" }
       - { label: "Body", name: "body", widget: "markdown" }
-
-  - name: "timeline"
-    label: "Timeline"
-    file: "_data/timeline.yml"
-    fields:
-      - label: "Entries"
-        name: "items"
-        widget: "list"
-        fields:
-          - { label: "Month", name: "month", widget: "string" }
-          - { label: "Tags", name: "tags", widget: "list" }
