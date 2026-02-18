@@ -89,7 +89,7 @@
     var idx = Math.floor(Math.random() * LITTLEONE.length);
     w.innerHTML =
       '<div class="littleone">' +
-      '<div class="littleone-label">the li\u2019l one says</div>' +
+      '<div class="littleone-label">The li\u2019l one says</div>' +
       '<div class="littleone-quote">\u201C' + escapeHtml(LITTLEONE[idx]) + '\u201D</div>' +
       '</div>';
   }
@@ -375,7 +375,7 @@
       if (section === "about" || section === "sketchbook") {
         activeItem = { kind: "special", id: section };
       } else {
-        var pieces = filterPieces(section);
+        var pieces = (activeSection === "about" || activeSection === "sketchbook") ? NAMED_PIECES : filterPieces(activeSection);
         if (pieces.length) {
           var first = pieces.find(function(p) { return p.visible; });
           activeItem = { kind: "named", id: (first || pieces[0]).id };
