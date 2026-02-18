@@ -452,7 +452,14 @@ html, body {
 .page-body.poem {
   font-size: 15px;
   line-height: 1.9;
-  white-space: pre-wrap;
+}
+
+.page-body.poem p {
+  margin: 0 0 16px 0;
+}
+
+.page-body.poem p:last-child {
+  margin-bottom: 0;
 }
 
 /* ── Locked page (named) ── */
