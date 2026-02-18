@@ -2,11 +2,13 @@ backend:
   name: github
   repo: akankshasrivastava/akanksha.co
   branch: main
-  auth_type: pkce
-  app_id: Ov23lipewKlpePS8dNnk
+  base_url: https://api.netlify.com
+  auth_endpoint: auth/authorize
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
+
+site_url: https://akanksha.co
 
 collections:
   - name: "writing"
