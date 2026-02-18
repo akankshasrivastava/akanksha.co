@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>akanksha</title>
+  <meta name="description" content="Writing, research, Hyderabad.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<style>
+:root{--accent:#c4653a;--bg:#0c0c0c;--paper:#f5f0e8;--paper-dark:#e8e0d2;--ink:#2a2420;--pencil:#9c8e80;--font-body:'Lora',Georgia,serif;--font-mono:'JetBrains Mono',monospace;--font-hand:'Caveat',cursive}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.spine-scroll::-webkit-scrollbar,.notebook-content::-webkit-scrollbar{width:4px}.spine-scroll::-webkit-scrollbar-track,.notebook-content::-webkit-scrollbar-track{background:transparent}.spine-scroll::-webkit-scrollbar-thumb{background:rgba(156,142,128,0.15);border-radius:4px}.spine-scroll::-webkit-scrollbar-thumb:hover{background:rgba(156,142,128,0.3)}.notebook-content::-webkit-scrollbar-thumb{background:rgba(156,142,128,0.12);border-radius:4px}
+.site-wrapper{height:100vh;display:flex;position:relative;z-index:2}.grain{position:fixed;inset:0;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none;z-index:1}
+.spine{width:240px;flex-shrink:0;display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateX(-14px);transition:all 0.9s cubic-bezier(0.23,1,0.32,1) 0.1s}.spine.loaded{opacity:1;transform:translateX(0)}.spine-header{padding:48px 0 0 32px;flex-shrink:0}.site-name{font-family:var(--font-mono);font-size:14px;font-weight:300;letter-spacing:4px;text-transform:lowercase;color:var(--pencil);margin:0 0 6px 0;line-height:1}.site-name-line{width:28px;height:1px;background:rgba(196,101,58,0.31);margin-bottom:32px}
+.spine-scroll{flex:1;overflow-y:auto;overflow-x:hidden;padding-left:32px;padding-bottom:16px;position:relative}.spine-thread{position:absolute;left:35px;top:0;bottom:0;width:1px;background:linear-gradient(rgba(156,142,128,0.15),rgba(156,142,128,0.15) 70%,rgba(156,142,128,0.03))}
+.named-entry{display:flex;align-items:flex-start;gap:13px;cursor:pointer;padding:7px 12px 7px 0;position:relative}.named-dot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0;transition:all 0.4s ease;background:rgba(156,142,128,0.16)}.named-dot.visible{background:rgba(156,142,128,0.33)}.named-dot.active{background:var(--accent);box-shadow:0 0 10px rgba(196,101,58,0.2)}.named-title{font-family:var(--font-body);font-size:13px;font-weight:400;color:rgba(156,142,128,0.4);line-height:1.35;transition:color 0.3s;margin-bottom:2px}.named-title.visible{color:rgba(156,142,128,0.67)}.named-title.active{color:#e8e0d2;font-weight:500}.named-type{font-family:var(--font-hand);font-size:11.5px;color:rgba(156,142,128,0.27);transition:color 0.3s}.named-type.active{color:rgba(196,101,58,0.53)}
+.spine-separator{margin:12px 0 16px;display:flex;align-items:center;gap:8px;padding-right:20px}.spine-separator-dot{width:7px;display:flex;justify-content:center;flex-shrink:0}.spine-separator-dot::after{content:'';display:block;width:3px;height:3px;border-radius:50%;background:rgba(156,142,128,0.13)}.spine-separator-line{flex:1;height:1px;background:rgba(156,142,128,0.08);margin-left:5px}
+.timeline-entry{display:flex;align-items:flex-start;gap:13px;cursor:pointer;padding:5px 12px 5px 0}.timeline-dot-wrap{width:7px;display:flex;justify-content:center;flex-shrink:0;padding-top:5px}.timeline-dot{width:3px;height:3px;border-radius:50%;background:rgba(156,142,128,0.16);transition:all 0.3s}.timeline-dot.active{width:5px;height:5px;background:var(--accent);box-shadow:0 0 8px rgba(196,101,58,0.2)}.timeline-month{font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.5px;color:rgba(156,142,128,0.33);transition:color 0.3s;display:block;margin-bottom:1px}.timeline-month.active{color:rgba(196,101,58,0.8)}.timeline-tags{font-family:var(--font-hand);font-size:11px;color:rgba(156,142,128,0.2);transition:color 0.3s;line-height:1.3;display:block}.timeline-tags.active{color:rgba(156,142,128,0.53)}
+.spine-nav{padding:20px 0 36px 32px;flex-shrink:0;border-top:1px solid rgba(156,142,128,0.05)}.nav-link{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(156,142,128,0.25);cursor:pointer;transition:color 0.3s;padding:6px 0 6px 21px;text-decoration:none}.nav-link:hover{color:var(--accent)}
+.notebook-area{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:48px 48px 48px 24px;opacity:0;transform:translateY(14px);transition:all 0.9s cubic-bezier(0.23,1,0.32,1) 0.35s}.notebook-area.loaded{opacity:1;transform:translateY(0)}.notebook{background:var(--paper);width:100%;max-width:580px;height:calc(100vh - 96px);border-radius:1px 3px 3px 1px;position:relative;box-shadow:0 1px 4px rgba(0,0,0,0.25),0 8px 24px rgba(0,0,0,0.2),0 24px 48px rgba(0,0,0,0.15),inset 0 1px 0 rgba(255,255,255,0.35);border-left:3px solid var(--paper-dark);display:flex;flex-direction:column;overflow:hidden}
+.notebook-lines{position:absolute;top:0;left:72px;right:44px;bottom:0;background-image:repeating-linear-gradient(transparent,transparent 31px,rgba(232,224,210,0.27) 31px,rgba(232,224,210,0.27) 32px);background-position-y:44px;pointer-events:none;z-index:0}.notebook-margin{position:absolute;top:0;bottom:0;left:60px;width:1px;background:rgba(196,101,58,0.08);z-index:0}
+.notebook-content{flex:1;overflow-y:auto;padding:48px 48px 64px 76px;position:relative;z-index:1;transition:opacity 0.22s ease,transform 0.22s ease}.notebook-content.transitioning{opacity:0;transform:translateY(8px)}.notebook-fade{position:absolute;bottom:0;left:3px;right:0;height:48px;background:linear-gradient(transparent,var(--paper));pointer-events:none;z-index:2;border-radius:0 0 3px 0}
+.page-type{font-family:var(--font-hand);font-size:15px;color:var(--accent);display:block;margin-bottom:8px}.page-title{font-family:var(--font-body);font-size:26px;font-weight:500;color:var(--ink);margin:0;line-height:1.25;letter-spacing:-0.3px}.page-divider{width:36px;height:1px;background:rgba(196,101,58,0.2);margin:28px 0 32px}.page-body{font-family:var(--font-body);font-size:14.5px;line-height:1.8;color:var(--ink)}.page-body p{margin:0 0 20px 0}.page-body.poem{font-size:15px;line-height:1.9;white-space:pre-wrap}
+.locked-type{font-family:var(--font-hand);font-size:15px;color:rgba(196,101,58,0.4);display:block;margin-bottom:8px}.locked-title{font-family:var(--font-body);font-size:26px;font-weight:500;color:rgba(42,36,32,0.47);margin:0;line-height:1.25;letter-spacing:-0.3px}.locked-divider{width:36px;height:1px;background:rgba(196,101,58,0.1);margin:24px 0 20px}
+.timeline-page-month{font-family:var(--font-mono);font-size:11px;letter-spacing:1.5px;color:rgba(156,142,128,0.53);display:block;margin-bottom:10px}.timeline-page-tags{font-family:var(--font-hand);font-size:15px;color:rgba(196,101,58,0.47)}.timeline-page-tags .tag-separator{color:rgba(156,142,128,0.2);margin:0 4px 0 8px;font-size:12px}.timeline-page-divider{width:36px;height:1px;background:rgba(196,101,58,0.1);margin:16px 0 20px}
+.ghost-area{position:relative;overflow:hidden;min-height:280px}.ghost-text{filter:blur(2.5px);opacity:0.14;user-select:none;pointer-events:none}.ghost-line{font-family:var(--font-hand);font-size:18px;line-height:1.65;color:var(--ink);letter-spacing:0.3px}.ghost-break{height:18px}
+.margin-note-wrap{position:absolute;top:36%;left:0;right:0;z-index:10}.margin-note{transform:rotate(-1.5deg);transform-origin:left center;background:rgba(245,240,232,0.73);padding:8px 20px 8px 0;border-radius:2px;display:inline-block}.margin-note span{font-family:var(--font-hand);font-size:22px;font-weight:500;color:rgba(156,142,128,0.6);letter-spacing:0.3px}.margin-note.timeline span{font-size:21px;font-weight:400;color:rgba(156,142,128,0.53)}
+@media(max-width:860px){.spine{width:200px}.notebook-area{padding:48px 24px 48px 16px}}
+@media(max-width:680px){.site-wrapper{flex-direction:column;height:auto;overflow:auto}html,body{overflow:auto}.spine{width:100%;max-height:none;overflow:visible;padding-bottom:0}.spine-header{padding:32px 24px 0}.spine-scroll{padding-left:24px;max-height:280px;overflow-y:auto}.spine-thread{left:27px}.spine-nav{padding:16px 24px 24px;display:flex;flex-direction:row;gap:0;flex-wrap:wrap}.nav-link{padding:6px 12px 6px 0}.notebook-area{padding:16px 16px 48px}.notebook{height:auto;min-height:500px;max-height:none}.notebook-content{padding:36px 28px 48px 52px}.notebook-lines{left:48px;right:24px}.notebook-margin{left:40px}}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div class="site-wrapper">
+  <aside class="spine">
+    <div class="spine-header">
+      <h1 class="site-name">akanksha</h1>
+      <div class="site-name-line"></div>
+    </div>
+    <div class="spine-scroll">
+      <div class="spine-thread"></div>
+      <div id="spine-entries"></div>
+    </div>
+    <nav class="spine-nav">
+      <a class="nav-link" href="#writing">writing</a>
+      <a class="nav-link" href="#notes">notes</a>
+      <a class="nav-link" href="#research">research</a>
+      <a class="nav-link" href="#about">about</a>
+    </nav>
+  </aside>
+
+  <main class="notebook-area">
+    <div class="notebook">
+      <div class="notebook-lines"></div>
+      <div class="notebook-margin"></div>
+      <div class="notebook-content" id="notebook-inner"></div>
+      <div class="notebook-fade"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+// ═══ CONTENT DATA ═══
+const NAMED_PIECES=[{id:"note-light-pollution",type:"note",title:"On light pollution",visible:false,lockedNote:"half a thought. the other half is coming",content:null},{id:"essay-reverse-migration",type:"essay",title:"Reverse Migration",visible:false,lockedNote:"still finding the words",content:null},{id:"fiction-blue-hour",type:"fiction",title:"The Blue Hour",visible:true,lockedNote:null,content:`The light in the room had turned that particular shade of grey-blue that Antara had always loved and Rajeev had never noticed. She used to point it out to him — look, that colour, right before the streetlights come on — and he would glance up from whatever he was reading and say yes, beautiful, without seeing it at all.
+
+But today is his birthday.
+
+She knows this the way she knows the monsoon is coming before the first drop falls — in her body, before her mind catches up. She had been pouring tea, the kettle tilted at exactly the angle her mother used, and something in the quality of the afternoon light had stopped her hand mid-pour.
+
+Tap. Tap. Tap.
+
+The drip from the kitchen faucet she keeps meaning to fix. Three months now. It has become a kind of metronome for her solitude — measuring out the seconds between one thought and the next.
+
+She remembers the road trip. The one where they drove fourteen hours to see a place she read about once, in a book Rajeev loved — a place where the desert met the sea and the sky couldn't decide which one to be. They arrived at dusk. The whole world was that blue-grey colour and Rajeev had finally seen it. Had stood there with his mouth slightly open like a child encountering snow.
+
+That was the version of him she had married. The one capable of being stunned.
+
+Tap. Tap. Tap.
+
+Antara sets down the kettle. Walks to the window. The city below is doing what cities do at this hour — shifting registers, trading the sharp brass of daytime for something softer, more forgiving. Offices emptying. Headlights beginning to move in slow streams. Somewhere, someone is heating oil for pakoras and the smell is rising six floors to reach her.
+
+She wonders if he still reads. If he still turns pages with that particular violence — not impatience, but hunger, as though the book might close itself if he didn't get through it fast enough.
+
+It is a code without a cipher.
+
+She could call. She has the number. It sits in her phone under a name she changed three times — first his name, then his initials, then just a single letter that could stand for anything. K. For a while she considered deleting it entirely, but that seemed like the kind of decisive gesture she had never been good at.
+
+The blue hour is ending. She can feel it — the way you feel a conversation ending before the last word is spoken. The streetlights will come on and the magic will break and it will just be Tuesday evening in a city of twenty million people, each of them carrying some version of this weight.
+
+Tap. Tap. Tap.
+
+She picks up the phone. Puts it down. Picks it up again.
+
+The light shifts. The streetlights stutter on, one by one, like a sentence being written across the dark.
+
+But today, she steps off the path.
+
+She dials.
+
+It rings once. Twice. Three times. She counts the rings the way she counted the drips — not because the number matters, but because counting is what you do when you're trying not to feel the thing that's happening.
+
+Four. Five.
+
+The blue is gone now. The room is just a room. The light is just light. And Antara is just a woman holding a phone in a city that doesn't know her name, listening to a sound that might be the beginning of something or might be the echo of something that ended long ago.
+
+She stays on the line.
+
+Tap. Tap. Tap.`},{id:"poem-echoes",type:"poem",title:"Echoes of Pilani",visible:true,lockedNote:null,content:`The wind still carries your name
+through corridors I left behind—
+past Gulmohar trees dropping
+their quiet, flame-coloured grief
+onto paths we wore thin
+with wanting.
+
+Nutan bazaars at dusk,
+hawkers crying hoarse
+over pyramids of glass bangles
+that caught the last light
+and held it
+the way I held your gaze—
+briefly, desperately,
+knowing it would shatter.
+
+The warbling bulbul
+hasn't changed its song.
+The yellowing leaves
+still curl the same way—
+inward, like a fist
+learning to let go.
+
+I left Pilani
+the way one leaves a dream—
+mid-sentence,
+the ending still writing itself
+somewhere in the dust
+between the library
+and the sky.`}];
+
+const TIMELINE=[{month:"Feb 2026",tags:["note","research log"]},{month:"Jan 2026",tags:["observation","photograph"]},{month:"Dec 2025",tags:["essay","poem"]},{month:"Oct 2025",tags:["note","paper review"]},{month:"Aug 2025",tags:["research log","photograph","note"]},{month:"Jun 2025",tags:["explainer","note"]},{month:"May 2025",tags:["poem","observation"]},{month:"Feb 2025",tags:["paper review","note","letter"]},{month:"Oct 2024",tags:["note","photograph"]},{month:"Aug 2024",tags:["essay","observation"]},{month:"Jun 2024",tags:["explainer","note"]},{month:"Apr 2024",tags:["poem","letter"]},{month:"Jan 2024",tags:["note","research log"]},{month:"Nov 2023",tags:["observation","note"]},{month:"Sep 2023",tags:["essay","photograph"]},{month:"Jul 2023",tags:["note","observation"]},{month:"Mar 2023",tags:["poem","note","letter"]},{month:"Dec 2022",tags:["note","photograph"]},{month:"Oct 2022",tags:["essay","observation"]},{month:"Aug 2022",tags:["poem","sketch","note"]},{month:"Jul 2022",tags:["note","photograph"]},{month:"Jun 2022",tags:["poem","essay","letter"]},{month:"May 2022",tags:["poem","note"]}];
+
+const TIMELINE_MESSAGES=["not hiding it — just holding it a little longer","this one keeps rewriting itself","yours, when I'm ready","I'll open this page when it's time","this one's still with me","it's here. just not yet","some pages stay folded a little longer","written. not ready to let go"];
+
+const GHOST_BLOCKS=[[
+"The morning came in sideways through the kitchen window",
+"and landed on the counter where yesterday's chai",
+"had left a ring like a small brown planet.",
+"",
+"She picked up the cup and held it the way",
+"her mother used to hold letters from home —",
+"with both hands, as if the thing might",
+"fly away if she wasn't careful.",
+"",
+"Outside, the auto driver was arguing",
+"with someone about a fare that seemed",
+"unreasonable to both of them for",
+"entirely different reasons.",
+"",
+"There is a particular quality of light",
+"in Hyderabad at ten in the morning",
+"that makes everything look like it was",
+"painted by someone who had just",
+"fallen in love and couldn't",
+"stop telling you about it.",
+],[
+"I keep a list of things I've lost to cities —",
+"a grey scarf in a cab on Market Street,",
+"the ability to sleep without a fan,",
+"the phone number of the man",
+"who fixed our washing machine in Seattle.",
+"",
+"San Francisco took the most from me",
+"or maybe I left the most there.",
+"It's hard to tell the difference",
+"when you're the one who moved.",
+"",
+"The fog is the thing people always mention",
+"and they're right to mention it.",
+"It comes in like a secret being kept",
+"from the rest of California —",
+"cool and conspiratorial and damp",
+"on your skin at seven in the morning.",
+"",
+"I never drove there. Thirteen years",
+"and in SF I walked or took the bus",
+"like someone who believed",
+"the city owed her slowness.",
+],[
+"A asked me yesterday what I'm studying",
+"and I said I'm trying to understand",
+"how machines learn to think.",
+"",
+"He said do they have brains",
+"and I said sort of,",
+"and he said are their brains",
+"squishy like mine",
+"and I said no, theirs are made of math.",
+"",
+"He thought about this for a while",
+"and then said that sounds boring",
+"and went back to his Legos.",
+"",
+"It was the most honest peer review",
+"I have received in months.",
+],[
+"The campus at night is a different country.",
+"The same buildings that feel institutional",
+"by day become something softer",
+"when the light is gone and",
+"the only sound is someone's",
+"code compiling three floors up.",
+"",
+"I found the library stays open",
+"until midnight on Thursdays.",
+"There's a corner on the second floor",
+"where the AC doesn't reach",
+"and the window looks out",
+"onto a neem tree that",
+"nobody else seems to notice.",
+"",
+"I've started thinking of it as mine.",
+"This is how you build a life somewhere —",
+"you claim a corner, a tree, a route",
+"and slowly the place",
+"starts to recognize your weight.",
+],[
+"The gradient doesn't care",
+"about your intentions.",
+"It flows where the loss surface",
+"tells it to flow,",
+"which is both the beauty",
+"and the frustration of the thing.",
+"",
+"I spent three weeks convinced",
+"the bug was in my reward model",
+"before realizing it was in",
+"how I was batching the data.",
+"",
+"There is a lesson here about",
+"looking at the obvious thing first",
+"but I refuse to learn it",
+"because the obvious thing",
+"is never where the interesting",
+"problems hide.",
+],[
+"Dravid batted the way some people pray —",
+"with the whole body, quietly,",
+"as if the act itself was the point",
+"and the scoreboard was someone else's",
+"problem entirely.",
+"",
+"I tried to explain this to someone once",
+"and they said you mean he was boring",
+"and I said no I mean he was",
+"the only honest one out there",
+"and they said same thing",
+"and I said it really isn't.",
+]];
+
+// ═══ MAIN LOGIC ═══
+(function(){
+"use strict";
+let activeItem={kind:"named",id:"poem-echoes"};
+let isTransitioning=false;
+
+function hashString(str,salt){let hash=0;const s=str+(salt||"");for(let i=0;i<s.length;i++){hash=(hash*31+s.charCodeAt(i))|0}return Math.abs(hash)}
+function getTimelineMessage(month){return TIMELINE_MESSAGES[hashString(month)%TIMELINE_MESSAGES.length]}
+function getGhostBlock(seed){return GHOST_BLOCKS[hashString(seed,"ghost")%GHOST_BLOCKS.length]}
+
+function renderSpine(){
+const container=document.getElementById("spine-entries");if(!container)return;let html="";
+html+='<div class="named-pieces">';
+NAMED_PIECES.forEach(entry=>{const isActive=activeItem.kind==="named"&&activeItem.id===entry.id;const dotClass="named-dot"+(isActive?" active":entry.visible?" visible":"");const titleClass="named-title"+(isActive?" active":entry.visible?" visible":"");const typeClass="named-type"+(isActive?" active":"");html+=`<div class="named-entry" data-kind="named" data-id="${entry.id}"><div class="${dotClass}"></div><div><div class="${titleClass}">${entry.title}</div><span class="${typeClass}">${entry.type}</span></div></div>`});
+html+='</div><div class="spine-separator"><div class="spine-separator-dot"></div><div class="spine-separator-line"></div></div><div class="timeline-entries">';
+TIMELINE.forEach(entry=>{const isActive=activeItem.kind==="timeline"&&activeItem.id===entry.month;const dotClass="timeline-dot"+(isActive?" active":"");const monthClass="timeline-month"+(isActive?" active":"");const tagsClass="timeline-tags"+(isActive?" active":"");html+=`<div class="timeline-entry" data-kind="timeline" data-id="${entry.month}"><div class="timeline-dot-wrap"><div class="${dotClass}"></div></div><div><span class="${monthClass}">${entry.month}</span><span class="${tagsClass}">${entry.tags.join(", ")}</span></div></div>`});
+html+="</div>";container.innerHTML=html;
+container.querySelectorAll("[data-kind]").forEach(el=>{el.addEventListener("click",function(){handleNavigation(this.dataset.kind,this.dataset.id)})});
+}
+
+function escapeHtml(text){const div=document.createElement("div");div.textContent=text;return div.innerHTML}
+
+function renderGhostLines(lines){return lines.map(line=>line===""?'<div class="ghost-break"></div>':`<div class="ghost-line">${escapeHtml(line)}</div>`).join("")}
+
+function renderPage(){
+const container=document.getElementById("notebook-inner");if(!container)return;let html="";
+if(activeItem.kind==="named"){
+const entry=NAMED_PIECES.find(e=>e.id===activeItem.id);if(!entry)return;
+if(entry.visible){
+const isPoem=entry.type==="poem";const bodyClass="page-body"+(isPoem?" poem":"");const paragraphs=entry.content.split("\n\n").map(p=>`<p>${escapeHtml(p)}</p>`).join("");
+html=`<span class="page-type">${entry.type}</span><h2 class="page-title">${entry.title}</h2><div class="page-divider"></div><div class="${bodyClass}">${paragraphs}</div>`;
+}else{
+const ghostLines=getGhostBlock(entry.id);const ghostHtml=renderGhostLines(ghostLines);
+html=`<span class="locked-type">${entry.type}</span><h2 class="locked-title">${entry.title}</h2><div class="locked-divider"></div><div class="ghost-area"><div class="ghost-text">${ghostHtml}</div><div class="margin-note-wrap"><div class="margin-note"><span>${entry.lockedNote}</span></div></div></div>`;
+}}else{
+const entry=TIMELINE.find(e=>e.month===activeItem.id);if(!entry)return;
+const message=getTimelineMessage(entry.month);const ghostLines=getGhostBlock(entry.month);const ghostHtml=renderGhostLines(ghostLines);
+const tagsHtml=entry.tags.map((tag,i)=>`<span>${tag}</span>${i<entry.tags.length-1?'<span class="tag-separator">·</span>':""}`).join("");
+html=`<span class="timeline-page-month">${entry.month}</span><div class="timeline-page-tags">${tagsHtml}</div><div class="timeline-page-divider"></div><div class="ghost-area"><div class="ghost-text">${ghostHtml}</div><div class="margin-note-wrap"><div class="margin-note timeline"><span>${message}</span></div></div></div>`;
+}
+container.innerHTML=html;
+}
+
+function handleNavigation(kind,id){
+if(activeItem.kind===kind&&activeItem.id===id)return;if(isTransitioning)return;isTransitioning=true;
+const content=document.getElementById("notebook-inner");if(content)content.classList.add("transitioning");
+setTimeout(()=>{activeItem={kind,id};renderPage();renderSpine();if(content){content.scrollTop=0;content.classList.remove("transitioning")}isTransitioning=false},230);
+}
+
+function init(){renderSpine();renderPage();requestAnimationFrame(()=>{setTimeout(()=>{document.querySelector(".spine")?.classList.add("loaded");document.querySelector(".notebook-area")?.classList.add("loaded")},100)})}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();
+</script>
+</body>
+</html>
