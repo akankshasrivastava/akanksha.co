@@ -31,7 +31,7 @@ collections:
           - letter
           - photograph
           - sketch
-      - { label: "Order (lower = higher in spine)", name: "order", widget: "number", value_type: "int" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
       - { label: "Visible", name: "visible", widget: "boolean", default: false }
-      - { label: "Locked note (shown when hidden)", name: "locked_note", widget: "string", required: false, default: "" }
+      - { label: "Locked note", name: "locked_note", widget: "string", required: false, default: "" }
       - { label: "Body", name: "body", widget: "markdown" }
