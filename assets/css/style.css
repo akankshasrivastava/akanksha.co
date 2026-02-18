@@ -112,14 +112,14 @@ html, body {
 }
 .currently-label {
   font-family: var(--font-mono); font-size: 9px; letter-spacing: 2.5px;
-  text-transform: uppercase; color: rgba(196,101,58,0.45); margin-bottom: 10px;
+  text-transform: uppercase; color: rgba(196,101,58,0.7); margin-bottom: 10px;
 }
 .currently-item {
-  font-family: var(--font-hand); font-size: 15px;
-  color: rgba(156,142,128,0.55); line-height: 1.55; padding: 2px 0;
+  font-family: var(--font-hand); font-size: 16px;
+  color: rgba(196,178,158,0.85); line-height: 1.55; padding: 2px 0;
 }
 .currently-key {
-  color: rgba(196,101,58,0.35); font-size: 13px;
+  color: rgba(196,101,58,0.55); font-size: 13px;
 }
 
 /* ── The li'l one says ── ENHANCED VISIBILITY */
@@ -130,11 +130,11 @@ html, body {
 }
 .littleone-label {
   font-family: var(--font-mono); font-size: 9px; letter-spacing: 2px;
-  text-transform: lowercase; color: rgba(196,101,58,0.35); margin-bottom: 8px;
+  text-transform: lowercase; color: rgba(196,101,58,0.65); margin-bottom: 8px;
 }
 .littleone-quote {
-  font-family: var(--font-hand); font-size: 16px;
-  color: rgba(156,142,128,0.55); line-height: 1.5; font-style: italic;
+  font-family: var(--font-hand); font-size: 17px;
+  color: rgba(196,178,158,0.8)); line-height: 1.5; font-style: italic;
 }
 
 /* ── Nav ── */
