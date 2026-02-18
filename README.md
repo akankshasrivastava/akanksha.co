@@ -1,46 +1,97 @@
 # akanksha.co
 
-Personal writing site. Dark notebook aesthetic. GitHub Pages.
+Personal writing site. Notebook aesthetic. Jekyll + GitHub Pages.
 
-## How to update content
+---
 
-Everything lives in `js/content.js`. Open it and:
+## Your workflow
 
-### Unlock a named piece
-Find the piece in `NAMED_PIECES`, set `visible: true`, and add the `content` string.
+### Publish a new piece
 
-### Add a new named piece
-Add an entry to the top of `NAMED_PIECES`:
-```js
-{
-  id: "unique-slug",
-  type: "poem",           // poem, essay, fiction, note, observation
-  title: "Your Title",
-  visible: true,           // false = locked with margin note
-  lockedNote: null,        // or "your margin note" if locked
-  content: `Your content here...`,
-},
+1. Create a new file in `_writing/` (e.g., `_writing/the-fog-and-the-dust.md`)
+2. Add this at the top:
+
+```
+---
+title: "The Fog and the Dust"
+type: essay
+order: 5
+visible: true
+locked_note: ""
+---
+
+Your content here. Just write in paragraphs.
 ```
 
-### Add a timeline month
-Add to the top of `TIMELINE`:
-```js
-{ month: "Mar 2026", tags: ["poem", "note", "photograph"] },
+3. Push to GitHub. Site rebuilds in ~1 minute.
+
+### Types you can use
+`poem`, `essay`, `fiction`, `note`, `observation`, `paper review`, `explainer`, `research log`, `letter`, `sketch`, `photograph`
+
+### Add a piece but keep it locked (coming soon)
+
+Same as above but set `visible: false` and add a margin note:
+```
+visible: false
+locked_note: "this one's still brewing"
 ```
 
-### Change a locked message
-Edit `lockedNote` on named pieces, or edit `TIMELINE_MESSAGES` for the rotating timeline messages.
+### Unlock an existing piece
 
-## Deploying
+Open the `.md` file, change `visible: false` to `visible: true`, add content below the `---`, push.
 
-Push to `main` branch. GitHub Pages serves from root. Domain: akanksha.co (CNAME file included).
+### Writing poems
+
+End each line with two spaces (invisible but necessary for line breaks).  
+Blank lines between stanzas.
+
+```
+From flicker to fire, with heedless fervour  
+Toying with fate, their first autumn in Pilani  
+
+He braided poetry into her wind kissed hair  
+To the rhythm of the warbling bulbuls of Pilani  
+```
+
+### Add an image
+
+1. Drop the image in `assets/images/`
+2. In your markdown: `![description](/assets/images/filename.jpg)`
+
+### Add a new month to the timeline
+
+Edit `_data/timeline.yml`. Add to the top:
+```
+- month: "Mar 2026"
+  tags: ["poem", "note", "photograph"]
+```
+
+### Change the order of pieces in the spine
+
+Change the `order` number in the front matter. Lower numbers appear first.
+
+---
+
+## Quick push (from Terminal)
+
+```
+cd /Users/akankshasrivastava/Documents/akanksha-site
+git add .
+git commit -m "new post"
+git push
+```
+
+Site updates in ~1 minute.
+
+---
 
 ## File structure
 
 ```
-index.html          — single page
-css/style.css       — all styles
-js/content.js       — all content data (edit this)
-js/main.js          — interaction logic
-CNAME               — custom domain
+_writing/           ← your content lives here (one .md file per piece)
+_data/timeline.yml  ← monthly timeline entries
+_layouts/           ← site template (don't touch unless redesigning)
+assets/css/         ← styles
+assets/js/          ← interaction logic
+assets/images/      ← photos, art, sketches
 ```

@@ -1,0 +1,24 @@
+title: akanksha
+url: "https://akanksha.co"
+description: "Writing, research, Hyderabad."
+
+collections:
+  writing:
+    output: false
+    sort_by: order
+
+defaults:
+  - scope:
+      path: ""
+      type: "writing"
+    values:
+      visible: false
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
