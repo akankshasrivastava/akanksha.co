@@ -1,9 +1,12 @@
 ---
 title: "The Blue Hour"
 type: fiction
-order: 3
+section: writing
+order: 5
 visible: true
 locked_note: ""
+margin_notes: []
+crosslinks: ["echoes-of-pilani"]
 ---
 
 Antara lives in a city of reliable rhythms. It is a world of glass towers and paved roads, where the sun reflects off the skyline with a hard, brilliant certainty. She has spent twenty years building a life here that is sturdy. A life of straight lines and clear horizons.

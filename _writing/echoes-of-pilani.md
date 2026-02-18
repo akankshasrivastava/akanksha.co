@@ -1,9 +1,12 @@
 ---
 title: "Echoes of Pilani"
 type: poem
-order: 4
+section: writing
+order: 6
 visible: true
 locked_note: ""
+margin_notes: []
+crosslinks: ["the-blue-hour"]
 ---
 
 From flicker to fire, with heedless fervour  

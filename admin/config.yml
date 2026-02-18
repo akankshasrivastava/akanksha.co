@@ -33,6 +33,13 @@ collections:
           - letter
           - photograph
           - sketch
+      - label: "Section"
+        name: "section"
+        widget: "select"
+        options:
+          - research
+          - writing
+          - notes
       - { label: "Order", name: "order", widget: "number", value_type: "int" }
       - { label: "Visible", name: "visible", widget: "boolean", default: false }
       - { label: "Locked note", name: "locked_note", widget: "string", required: false, default: "" }

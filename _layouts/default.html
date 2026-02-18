@@ -23,18 +23,21 @@
   <div class="site-wrapper">
     <aside class="spine">
       <div class="spine-header">
-        <h1 class="site-name">akanksha</h1>
+        <h1 class="site-name" id="site-name-link">akanksha</h1>
         <div class="site-name-line"></div>
       </div>
       <div class="spine-scroll">
         <div class="spine-thread"></div>
         <div id="spine-entries"></div>
       </div>
+      <div class="currently-wrap" id="currently-wrap"></div>
+      <div class="littleone-wrap" id="littleone-wrap"></div>
       <nav class="spine-nav">
-        <a class="nav-link" href="#writing">writing</a>
-        <a class="nav-link" href="#notes">notes</a>
-        <a class="nav-link" href="#research">research</a>
-        <a class="nav-link" href="#about">about</a>
+        <a class="nav-link" data-section="research" href="#research">research</a>
+        <a class="nav-link" data-section="writing" href="#writing">writing</a>
+        <a class="nav-link" data-section="notes" href="#notes">notes</a>
+        <a class="nav-link" data-section="sketchbook" href="#sketchbook">sketchbook</a>
+        <a class="nav-link" data-section="about" href="#about">about</a>
       </nav>
     </aside>
 
@@ -48,22 +51,47 @@
     </main>
   </div>
 
-  <!-- Content injected from Jekyll collections -->
   <script>
+  // ── Data from Jekyll ──
   {% assign sorted_writing = site.writing | sort: "order" %}
-  const NAMED_PIECES = [{% for piece in sorted_writing %}{
+  var NAMED_PIECES = [{% for piece in sorted_writing %}{
     id: {{ piece.slug | jsonify }},
     type: {{ piece.type | jsonify }},
+    section: {{ piece.section | jsonify }},
     title: {{ piece.title | jsonify }},
     visible: {{ piece.visible }},
     lockedNote: {% if piece.locked_note and piece.locked_note != "" %}{{ piece.locked_note | jsonify }}{% else %}null{% endif %},
     isPoem: {{ piece.type | jsonify }} === "poem",
-    contentHtml: {% if piece.visible %}{{ piece.content | jsonify }}{% else %}null{% endif %}
+    marginNotes: {{ piece.margin_notes | jsonify | default: "[]" }},
+    crosslinks: {{ piece.crosslinks | jsonify | default: "[]" }},
+    contentHtml: {% if piece.visible and piece.content != "" %}{{ piece.content | jsonify }}{% else %}null{% endif %}
   }{% unless forloop.last %},{% endunless %}{% endfor %}];
 
-  const TIMELINE = [{% for entry in site.data.timeline %}{
+  var TIMELINE = [{% for entry in site.data.timeline %}{
     month: {{ entry.month | jsonify }},
     tags: {{ entry.tags | jsonify }}
+  }{% unless forloop.last %},{% endunless %}{% endfor %}];
+
+  var CURRENTLY = {
+    reading: {{ site.data.currently.reading | jsonify }},
+    obsessing: {{ site.data.currently.obsessing | jsonify }},
+    listening: {{ site.data.currently.listening | jsonify }}
+  };
+
+  var LITTLEONE = [{% for q in site.data.littleone %}{{ q.quote | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}];
+
+  var ABOUT = {
+    fragments: {{ site.data.about.fragments | jsonify }},
+    bio: {{ site.data.about.bio_short | jsonify }},
+    links: {{ site.data.about.links | jsonify }}
+  };
+
+  var SKETCHBOOK = [{% for s in site.data.sketchbook %}{
+    title: {{ s.title | jsonify }},
+    type: {{ s.type | jsonify }},
+    image: {{ s.image | jsonify }},
+    caption: {{ s.caption | jsonify }},
+    visible: {{ s.visible }}
   }{% unless forloop.last %},{% endunless %}{% endfor %}];
   </script>
 

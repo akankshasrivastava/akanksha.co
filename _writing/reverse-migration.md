@@ -1,7 +1,10 @@
 ---
 title: "Reverse Migration"
 type: essay
-order: 2
+section: writing
+order: 7
 visible: false
 locked_note: "still finding the words"
+margin_notes: []
+crosslinks: []
 ---

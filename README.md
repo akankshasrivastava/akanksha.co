@@ -1,97 +1,55 @@
 # akanksha.co
 
-Personal writing site. Notebook aesthetic. Jekyll + GitHub Pages.
+Personal research blog. Jekyll + GitHub Pages.
 
----
+## Deploy
 
-## Your workflow
+```bash
+# From your akanksha-site directory:
+# 1. Delete everything except .git
+# 2. Copy all files from this package
+# 3. Push
 
-### Publish a new piece
-
-1. Create a new file in `_writing/` (e.g., `_writing/the-fog-and-the-dust.md`)
-2. Add this at the top:
-
-```
----
-title: "The Fog and the Dust"
-type: essay
-order: 5
-visible: true
-locked_note: ""
----
-
-Your content here. Just write in paragraphs.
-```
-
-3. Push to GitHub. Site rebuilds in ~1 minute.
-
-### Types you can use
-`poem`, `essay`, `fiction`, `note`, `observation`, `paper review`, `explainer`, `research log`, `letter`, `sketch`, `photograph`
-
-### Add a piece but keep it locked (coming soon)
-
-Same as above but set `visible: false` and add a margin note:
-```
-visible: false
-locked_note: "this one's still brewing"
-```
-
-### Unlock an existing piece
-
-Open the `.md` file, change `visible: false` to `visible: true`, add content below the `---`, push.
-
-### Writing poems
-
-End each line with two spaces (invisible but necessary for line breaks).  
-Blank lines between stanzas.
-
-```
-From flicker to fire, with heedless fervour  
-Toying with fate, their first autumn in Pilani  
-
-He braided poetry into her wind kissed hair  
-To the rhythm of the warbling bulbuls of Pilani  
-```
-
-### Add an image
-
-1. Drop the image in `assets/images/`
-2. In your markdown: `![description](/assets/images/filename.jpg)`
-
-### Add a new month to the timeline
-
-Edit `_data/timeline.yml`. Add to the top:
-```
-- month: "Mar 2026"
-  tags: ["poem", "note", "photograph"]
-```
-
-### Change the order of pieces in the spine
-
-Change the `order` number in the front matter. Lower numbers appear first.
-
----
-
-## Quick push (from Terminal)
-
-```
 cd /Users/akankshasrivastava/Documents/akanksha-site
-git add .
-git commit -m "new post"
+find . -not -path './.git/*' -not -name '.git' -not -name '.' -delete
+# Then copy files in, then:
+git add -A
+git commit -m "full site rebuild with all features"
 git push
 ```
 
-Site updates in ~1 minute.
+## CMS Login
 
+Go to https://akanksha.co/admin/ and click "Login with GitHub".
+
+If the CMS shows a blank screen, you may need to add your Netlify site ID:
+1. Go to Netlify → Project configuration → General → Site ID
+2. Add `site_id: YOUR_SITE_ID` under `backend:` in `admin/config.yml`
+
+## Content
+
+- `_writing/` — All pieces (poems, essays, research, notes)
+- `_data/currently.yml` — "Currently reading/obsessing/listening"
+- `_data/littleone.yml` — A's quotes
+- `_data/about.yml` — About page fragments
+- `_data/sketchbook.yml` — Art entries
+- `_data/timeline.yml` — Monthly timeline entries
+
+## Adding content
+
+Create a new `.md` file in `_writing/` with front matter:
+
+```yaml
+---
+title: "Your Title"
+type: poem          # poem/essay/fiction/note/observation/paper review/explainer/research log
+section: writing    # research/writing/notes
+order: 12           # lower = higher in spine
+visible: false      # true to show content, false for locked
+locked_note: "still working on this"
+margin_notes: []
+crosslinks: []
 ---
 
-## File structure
-
-```
-_writing/           ← your content lives here (one .md file per piece)
-_data/timeline.yml  ← monthly timeline entries
-_layouts/           ← site template (don't touch unless redesigning)
-assets/css/         ← styles
-assets/js/          ← interaction logic
-assets/images/      ← photos, art, sketches
+Your content here in markdown.
 ```

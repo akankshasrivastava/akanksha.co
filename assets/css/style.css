@@ -15,6 +15,38 @@
   --font-hand: 'Caveat', cursive;
 }
 
+/* ── Night Sky Mode ── */
+body.night-sky {
+  --bg: #060810;
+  --paper: #f0ebe3;
+  --paper-dark: #e2dace;
+}
+
+body.night-sky .grain {
+  opacity: 0.015;
+}
+
+body.night-sky::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.15) 0%, transparent 50%),
+    radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.1) 0%, transparent 50%),
+    radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.12) 0%, transparent 50%),
+    radial-gradient(1px 1px at 70% 45%, rgba(255,255,255,0.08) 0%, transparent 50%),
+    radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,0.13) 0%, transparent 50%),
+    radial-gradient(1px 1px at 20% 80%, rgba(255,255,255,0.07) 0%, transparent 50%),
+    radial-gradient(1px 1px at 45% 40%, rgba(255,255,255,0.11) 0%, transparent 50%),
+    radial-gradient(1px 1px at 65% 85%, rgba(255,255,255,0.09) 0%, transparent 50%),
+    radial-gradient(1px 1px at 90% 25%, rgba(255,255,255,0.14) 0%, transparent 50%),
+    radial-gradient(1px 1px at 40% 95%, rgba(255,255,255,0.06) 0%, transparent 50%),
+    radial-gradient(1px 1px at 75% 10%, rgba(255,255,255,0.1) 0%, transparent 50%),
+    radial-gradient(1px 1px at 15% 50%, rgba(255,255,255,0.08) 0%, transparent 50%);
+}
+
 /* ── Reset ── */
 *, *::before, *::after {
   margin: 0;
@@ -30,9 +62,10 @@ html, body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 1.5s ease;
 }
 
-/* ── Scrollbar styling (spine + notebook) ── */
+/* ── Scrollbar styling ── */
 .spine-scroll::-webkit-scrollbar,
 .notebook-content::-webkit-scrollbar {
   width: 4px;
@@ -107,6 +140,12 @@ html, body {
   color: var(--pencil);
   margin: 0 0 6px 0;
   line-height: 1;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.site-name:hover {
+  color: var(--accent);
 }
 
 .site-name-line {
@@ -126,7 +165,6 @@ html, body {
   position: relative;
 }
 
-/* Vertical thread */
 .spine-thread {
   position: absolute;
   left: 35px;
@@ -290,9 +328,70 @@ html, body {
   color: rgba(156, 142, 128, 0.53);
 }
 
+/* ── Currently element ── */
+.currently-wrap {
+  padding: 0 0 0 32px;
+  flex-shrink: 0;
+}
+
+.currently {
+  border-top: 1px solid rgba(156, 142, 128, 0.05);
+  padding: 14px 0 6px 0;
+}
+
+.currently-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(156, 142, 128, 0.2);
+  margin-bottom: 8px;
+}
+
+.currently-item {
+  font-family: var(--font-hand);
+  font-size: 13px;
+  color: rgba(156, 142, 128, 0.35);
+  line-height: 1.5;
+  padding: 1px 0;
+}
+
+.currently-key {
+  color: rgba(156, 142, 128, 0.22);
+  font-size: 12px;
+}
+
+/* ── The li'l one says ── */
+.littleone-wrap {
+  padding: 0 0 0 32px;
+  flex-shrink: 0;
+}
+
+.littleone {
+  border-top: 1px solid rgba(156, 142, 128, 0.05);
+  padding: 14px 16px 10px 0;
+}
+
+.littleone-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: lowercase;
+  color: rgba(156, 142, 128, 0.2);
+  margin-bottom: 6px;
+}
+
+.littleone-quote {
+  font-family: var(--font-hand);
+  font-size: 14px;
+  color: rgba(156, 142, 128, 0.4);
+  line-height: 1.45;
+  font-style: italic;
+}
+
 /* ── Bottom nav ── */
 .spine-nav {
-  padding: 20px 0 36px 32px;
+  padding: 14px 0 36px 32px;
   flex-shrink: 0;
   border-top: 1px solid rgba(156, 142, 128, 0.05);
 }
@@ -311,6 +410,10 @@ html, body {
 }
 
 .nav-link:hover {
+  color: var(--accent);
+}
+
+.nav-link.active {
   color: var(--accent);
 }
 
@@ -349,9 +452,9 @@ html, body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: background 1.5s ease, border-color 1.5s ease;
 }
 
-/* Ruled lines */
 .notebook-lines {
   position: absolute;
   top: 0;
@@ -369,7 +472,6 @@ html, body {
   z-index: 0;
 }
 
-/* Red margin */
 .notebook-margin {
   position: absolute;
   top: 0;
@@ -380,7 +482,6 @@ html, body {
   z-index: 0;
 }
 
-/* Scrollable content area */
 .notebook-content {
   flex: 1;
   overflow-y: auto;
@@ -395,7 +496,6 @@ html, body {
   transform: translateY(8px);
 }
 
-/* Bottom paper fade */
 .notebook-fade {
   position: absolute;
   bottom: 0;
@@ -406,13 +506,13 @@ html, body {
   pointer-events: none;
   z-index: 2;
   border-radius: 0 0 3px 0;
+  transition: background 1.5s ease;
 }
 
 /* ════════════════════════
    PAGE CONTENT STYLES
    ════════════════════════ */
 
-/* ── Visible page ── */
 .page-type {
   font-family: var(--font-hand);
   font-size: 15px;
@@ -575,6 +675,223 @@ html, body {
   color: rgba(156, 142, 128, 0.53);
 }
 
+/* ── Content margin notes (beside visible text) ── */
+.content-margin-note {
+  position: absolute;
+  right: -10px;
+  transform: translateX(100%);
+  max-width: 140px;
+}
+
+.content-margin-note span {
+  font-family: var(--font-hand);
+  font-size: 13px;
+  color: rgba(156, 142, 128, 0.45);
+  line-height: 1.4;
+}
+
+/* ── Crosslinks ── */
+.crosslinks {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(156, 142, 128, 0.1);
+}
+
+.crosslinks-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(156, 142, 128, 0.3);
+  margin-right: 12px;
+}
+
+.crosslink-item {
+  font-family: var(--font-hand);
+  font-size: 16px;
+  color: var(--accent);
+  cursor: pointer;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.crosslink-item:hover {
+  color: rgba(196, 101, 58, 0.7);
+}
+
+.crosslinks-sep {
+  color: rgba(156, 142, 128, 0.2);
+  margin: 0 8px;
+  font-size: 12px;
+}
+
+/* ════════════════════════
+   ABOUT PAGE
+   ════════════════════════ */
+.about-page {
+  padding-bottom: 40px;
+}
+
+.about-photo-area {
+  width: 100%;
+  height: 0;
+  margin-bottom: 0;
+}
+
+.about-photo-area img {
+  width: 100%;
+  border-radius: 2px;
+  filter: grayscale(0.15) contrast(1.05);
+}
+
+.about-photo-area:has(img) {
+  height: auto;
+  margin-bottom: 32px;
+}
+
+.about-bio {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: rgba(156, 142, 128, 0.6);
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+
+.about-fragments {
+  position: relative;
+}
+
+.about-fragment {
+  font-family: var(--font-hand);
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.55;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(232, 224, 210, 0.5);
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+
+.about-fragment:hover {
+  opacity: 1;
+}
+
+.about-fragment:nth-child(odd) {
+  padding-left: 12px;
+}
+
+.about-fragment:nth-child(3n) {
+  transform: rotate(-0.3deg);
+}
+
+.about-fragment:nth-child(5n) {
+  transform: rotate(0.2deg);
+}
+
+.about-fragment:last-child {
+  border-bottom: none;
+}
+
+.about-links {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(156, 142, 128, 0.08);
+}
+
+.about-link {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: lowercase;
+  color: rgba(156, 142, 128, 0.35);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.about-link:hover {
+  color: var(--accent);
+}
+
+.about-link-sep {
+  color: rgba(156, 142, 128, 0.15);
+  margin: 0 10px;
+  font-size: 10px;
+}
+
+/* ════════════════════════
+   SKETCHBOOK PAGE
+   ════════════════════════ */
+.sketchbook-page {
+  padding-bottom: 40px;
+}
+
+.sketchbook-title {
+  font-family: var(--font-hand);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.sketchbook-subtitle {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(156, 142, 128, 0.4);
+  margin-bottom: 32px;
+}
+
+.sketchbook-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.sketch-entry {
+  position: relative;
+}
+
+.sketch-image {
+  width: 100%;
+  border-radius: 2px;
+  display: block;
+}
+
+.sketch-caption {
+  font-family: var(--font-hand);
+  font-size: 14px;
+  color: rgba(156, 142, 128, 0.5);
+  margin-top: 6px;
+}
+
+.sketch-locked {
+  opacity: 0.35;
+}
+
+.sketch-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: rgba(232, 224, 210, 0.5);
+  border-radius: 2px;
+  border: 1px dashed rgba(156, 142, 128, 0.15);
+}
+
+.sketch-title-locked {
+  font-family: var(--font-hand);
+  font-size: 15px;
+  color: rgba(156, 142, 128, 0.4);
+  margin-top: 6px;
+}
+
+.sketch-type {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: rgba(156, 142, 128, 0.25);
+  text-transform: uppercase;
+}
+
 /* ════════════════════════
    RESPONSIVE
    ════════════════════════ */
@@ -585,6 +902,10 @@ html, body {
 
   .notebook-area {
     padding: 48px 24px 48px 16px;
+  }
+
+  .content-margin-note {
+    display: none;
   }
 }
 
@@ -620,6 +941,11 @@ html, body {
     left: 27px;
   }
 
+  .currently-wrap,
+  .littleone-wrap {
+    padding-left: 24px;
+  }
+
   .spine-nav {
     padding: 16px 24px 24px;
     display: flex;
@@ -653,5 +979,13 @@ html, body {
 
   .notebook-margin {
     left: 40px;
+  }
+
+  .content-margin-note {
+    display: none;
+  }
+
+  .sketchbook-grid {
+    grid-template-columns: 1fr;
   }
 }
